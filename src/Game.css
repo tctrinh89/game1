@@ -1,0 +1,13 @@
+.Game{
+    /* position: absolute; */
+    width:340px;
+    /* top :0; */
+    margin-bottom: 10px;
+    height: 95vh;
+  background-color: #f75a12;
+  border: 10px white solid;
+  border-radius: 30px;
+  /* border: 10px solid #f75a12; */
+    /* border-radius: 25px; */
+    font-size: 20px;
+}

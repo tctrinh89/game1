@@ -1,0 +1,44 @@
+.answer {
+    margin-top: 10px;
+    height:40px;
+    width: 300px;
+    text-align: center;
+    font-size: 30px;
+    border: none;
+    color: white;
+    background-color:#f75a12;
+}
+.Answer .ButtonGame{
+    padding: 10px 20px 70px 20px;
+    margin-top: 10px;
+    background-color: white;
+    height: 60vh;
+    width:320px;
+    border-radius: 25px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* padding-bottom: 80px; */
+    position: relative;
+}
+.Answer .ButtonGame div{
+    width:90px;
+    height: 60px;
+    /* margin-top: 10px; */
+    padding-top:0 ;
+    /* background-color: #a8c9f0; */
+}
+.Answer .ButtonGame button{
+    width:60px;
+    height:60px;
+    margin: 0;
+    font-size: 20px;
+    border: none;
+    background-color:#c2c45d ;
+    color: #f75a12;
+}
+.Answer .ButtonGame div:last-child{
+    position: absolute;
+    bottom: 25px;
+    width: 300px;
+}

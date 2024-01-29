@@ -1,0 +1,37 @@
+.Begin{
+    margin-top: 100px;
+    
+     text-align:left;
+    display: flex;
+    flex-direction: column;
+    }
+    
+.Begin .Input{
+    /* width: 150px; */
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-top: 10px;
+    margin-left: 20px;
+}
+.Begin .Input input{
+    height:30px;
+}
+.Begin .Button{
+    margin: 20px auto;
+    
+}
+.Begin .Check{
+    display: flex;
+    margin-left: 20px;
+
+}
+.Begin .Check .check{
+    margin:20px 0 10px 15px;
+    font-size: 25px;
+
+}
+.Begin .Check .check input{
+    height: 25px;
+    width: 25px;
+}
