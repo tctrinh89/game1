@@ -1,6 +1,5 @@
 .Begin{
-    margin-top: 100px;
-    
+    margin-top: 50px;
      text-align:left;
     display: flex;
     flex-direction: column;
@@ -17,8 +16,11 @@
 .Begin .Input input{
     height:30px;
 }
+.Begin .Input .inputNumber{
+    width: 50px;
+}
 .Begin .Button{
-    margin: 20px auto;
+    margin: auto;
     
 }
 .Begin .Check{
@@ -35,3 +37,8 @@
     height: 25px;
     width: 25px;
 }
+.Begin .Radio input{
+    height: 25px;
+    width: 25px;
+}
+.Begin .Radio{margin: auto;}

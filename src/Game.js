@@ -7,11 +7,17 @@ import Answer from './Answer'
 import Cho from './Cho'
 import Ketthuc from './Ketthuc'
 import './Game.css'
+import TracNghiem from "./TracNghiem";
 function Game ({user}){
     
     const [timeInput,setTimeInput]= useState('')
     const [time,setTime]=useState('')
-    const [numberInput,setNumberInput]=useState('')
+    // const [numberInput,setNumberInput]=useState('')
+    const [numberMin1,setNumberMin1]=useState('')
+    const [numberMax1,setNumberMax1]=useState('')
+    const [numberMin2,setNumberMin2]=useState('')
+    const [numberMax2,setNumberMax2]=useState('')
+
     const [phepToans,setPhepToans]=useState([])
     const [showGame,setShowGame]=useState(false)
     const audio=useRef()
@@ -25,8 +31,15 @@ function Game ({user}){
     const [showKetthuc,setShowKetthuc]=useState(false)
 
     const handleTimeInput = (e)=>setTimeInput(e.target.value)
-    const handleNumberInput = (e)=>setNumberInput(e.target.value)
+    const handleNumberMin1 = (e)=>setNumberMin1(e.target.value)
+    const handleNumberMax1 = (e)=>setNumberMax1(e.target.value)
+    const handleNumberMin2 = (e)=>setNumberMin2(e.target.value)
+    const handleNumberMax2 = (e)=>setNumberMax2(e.target.value)
+    const [radio,setRadio]=useState('Tự Luận')
 
+    const handleRadio=(e)=>{
+        setRadio(e.target.value)
+    }
     const handleCheck=(e)=>{
         if(phepToans.includes(e)){
             setPhepToans(phepToans.filter(item=>item !== e))
@@ -39,7 +52,7 @@ function Game ({user}){
         setShowGame(!showGame)
         setScore(0)
         // setShowKetthuc(!showKetthuc)
-        setAnswer('')
+        // setAnswer('?')
     }
     const handleButton=(e)=>{
         if(e.target.value ==='X'){
@@ -57,8 +70,9 @@ function Game ({user}){
                 setShowKetthuc(!showKetthuc)
             }
         } else{
-            setAnswer(answer+e.target.value)
-        }
+            setAnswer('')
+            setAnswer(answer+e.target.value
+            )}
     }
     const handleReset=()=>{
         setShowGame(false)
@@ -67,10 +81,30 @@ function Game ({user}){
         setPhepToans([])
         setQuestion('')
         setTimeInput('')
-        setNumberInput('')
+        // setNumberInput('')
+        setNumberMin1('')
+        setNumberMax1('')
+        setNumberMin2('')
+        setNumberMax2('')
+        setAnswer('')
     }
+
+    const handleTracNghiem=(e)=>{
+        
+        if(parseInt(eval(question))=== Number((e.target.value))){
+            clearInterval(downTime.current)
+            setScore(score+1)
+            setAnswer('')
+            setQuestion('')
+            setTime(timeInput)
+            setShowCho(!showCho)
+        } else {
+            clearInterval(downTime.current)
+            setShowKetthuc(!showKetthuc)
+        }
+    }
+
     useEffect(()=>{
-        console.log((parseInt(eval(question))))
         if(showGame){
         downTime.current=setInterval(() => {
         if(time>0){
@@ -83,15 +117,18 @@ function Game ({user}){
     }
         return ()=>clearInterval(downTime.current)
     },[showGame,time])
+
+    const [mangs,setMangs]=useState([])
+    const ketqua=useRef()
     useEffect(()=>{
-        let so1=Math.floor(Math.random()*(numberInput||10))
-        let so2=Math.floor(Math.random()*(numberInput||10))
+        let so1=(Math.floor(Math.random() * (Number(numberMax1) - Number(numberMin1) + 1)) + Number(numberMin1)) ||( Math.floor(Math.random() * 10))
+        let so2=(Math.floor(Math.random() * (Number(numberMax2) - Number(numberMin2) + 1)) + Number(numberMin2)) || (Math.floor(Math.random() * 5))
         // let auto=Math.floor(Math.random()*10)
         let pheptoan=phepToans[Math.floor(Math.random()*phepToans.length)] || '+'
         const so=[so1,so2]
         so.sort((a,b)=>b-a)
         setQuestion(`${so[0]} ${pheptoan} ${so[1]}`)
-    },[numberInput,score])
+    },[score,showGame])
     useEffect(()=>{
         if(showCho){
             downCount.current=setInterval(() => {
@@ -114,15 +151,13 @@ function Game ({user}){
     const [lists,setLists]=useState([])
     useEffect(()=>{
     const dbRef = getDatabase();
-    set(ref(dbRef,`Calculator/Users/${user || 'win'}`),score||0)
-    get(child(ref(dbRef),`Calculator/Users`)).then((snapshot)=>{
+    set(ref(dbRef,`${radio}/Users/${user || 'win'}`),score||0)
+    get(child(ref(dbRef),`${radio}/Users`)).then((snapshot)=>{
         const list= Object.entries(snapshot.val())
         list.sort((a,b)=>b[1]-a[1])
         setLists(list)
     })
     },[score])
-
-    console.log(user,lists)
     return(
         <div className='Game'>
             {showGame? 
@@ -134,8 +169,11 @@ function Game ({user}){
                     <Cho count={count}/> :
 
                     <div className='StarGame'>
-                    <Question score={score} time={time} question={question} audio={audio}/>
-                    <Answer answer={answer} handleButton={handleButton}/>
+                    <Question score={score} time={time} question={question} answer={answer} audio={audio}/>
+                    {radio ==='Trắc Nghiệm' ?
+                    <TracNghiem  mangs={mangs} ketqua={ketqua} question={question} handleTracNghiem={handleTracNghiem}/> :
+                    <Answer  handleButton={handleButton}/>
+                    }
                     </div> 
                     }
                 </div>)
@@ -144,7 +182,18 @@ function Game ({user}){
                 </>) :
             (<Begin 
                 timeInput={timeInput} handleTimeInput={handleTimeInput}  handleBegin={handleBegin}
-                numberInput={numberInput} handleNumberInput={handleNumberInput} handleCheck={handleCheck}
+                // numberInput={numberInput}
+                numberMin1={numberMin1}
+                numberMax1={numberMax1}
+                numberMin2={numberMin2}
+                numberMax2={numberMax2}
+                // handleNumberInput={handleNumberInput} 
+                handleNumberMin1={handleNumberMin1}
+                handleNumberMax1={handleNumberMax1}
+                handleNumberMin2={handleNumberMin2}
+                handleNumberMax2={handleNumberMax2}
+                handleCheck={handleCheck}
+                handleRadio={handleRadio} radio={radio}
             />)
             }
         </div>

@@ -1,0 +1,43 @@
+.TracNghiem{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width:322px;
+    padding:0 10px 30px 10px;
+    /* margin-top: 55px; */
+    background-color: white;
+    height: 55vh;
+    border-radius: 25px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* padding-bottom: 80px; */
+    /* position: relative; */
+}
+.TracNghiem .ButtonTracNghiem{
+    margin: auto;
+    
+}
+.TracNghiem .ButtonTracNghiem button{
+    margin: 0px auto;
+    border: none;
+    width: 140px;
+    height:140px;
+    font-size: 50px;
+}
+.TracNghiem .ButtonTracNghiem:nth-child(1) button{
+    background-color: #f4f4c8;
+    color: #c0c01d;
+}
+.TracNghiem .ButtonTracNghiem:nth-child(2) button{
+    background-color: #f5c8e0;
+    color: #e7228b;
+}
+.TracNghiem .ButtonTracNghiem:nth-child(3) button{
+    background-color: #c7e8f3;
+    color: #1ca6d3;
+}
+.TracNghiem .ButtonTracNghiem:nth-child(4) button{
+    background-color: #a8c9f0;
+    color: #126ede;
+}

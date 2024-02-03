@@ -1,19 +1,14 @@
-.answer {
-    margin-top: 10px;
-    height:40px;
-    width: 300px;
-    text-align: center;
-    font-size: 30px;
-    border: none;
-    color: white;
-    background-color:#f75a12;
+.Answer{
+    position: absolute;
+    bottom: 0;
+    width:322px;
+
 }
 .Answer .ButtonGame{
-    padding: 10px 20px 70px 20px;
-    margin-top: 10px;
+    padding: 10px 10px 70px 10px;
+    /* margin-top: 55px; */
     background-color: white;
     height: 60vh;
-    width:320px;
     border-radius: 25px;
     display:flex;
     flex-wrap: wrap;
@@ -39,6 +34,10 @@
 }
 .Answer .ButtonGame div:last-child{
     position: absolute;
-    bottom: 25px;
+    bottom: 15px;
     width: 300px;
+}
+.Answer .ButtonGame div:last-child button{
+   height: 50px;
+    width: 250px;
 }

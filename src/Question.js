@@ -1,6 +1,6 @@
 import './Question.css'
 import audio60s from './60s.mp3'
-function Question({score,time,question,audio}){
+function Question({score,time,question,answer,audio}){
 
     return(
         <div className='Question'>
@@ -20,10 +20,25 @@ function Question({score,time,question,audio}){
                 </svg>
             </div>
             </div>
+            {/* <div className="question">
+                <input className="quesInput" 
+                value={question}
+                readOnly/>
+                <input value='=' style={{width:30}}/>
+                <input className="answer" 
+            value={answer||'?'} 
+            onChange= {e=>(e.target.value)} 
+            />
+            </div> */}
             <div className="question">
                 <input className="quesInput" 
-                value={question + "= ?"}
+                value={question}
                 readOnly/>
+                <input value='=' style={{width:30}} readOnly/>
+                <input className="answer" 
+            value={answer||'?'} 
+            onChange= {e=>(e.target.value)} 
+            />
             </div>
         </div>
     )

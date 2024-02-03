@@ -8,14 +8,31 @@
     padding-right: 20px;
     
 }
-.quesInput{
+.question{
+    display: flex;
+}
+.question input{
     margin-top: 20px;
+    margin-right: 10px;
+    height:40px;
+    width: 130px;
+    /* text-align: center; */
+    font-size: 30px;
+    border: none;
+    color: white;
+    background-color:#f75a12;
+}
+.quesInput{
+    text-align: right;
+
+}
+/* .answer {
+    margin-top: 10px;
     height:40px;
     width: 300px;
     text-align: center;
     font-size: 30px;
     border: none;
-    color: white;
-    background-color:#f75a12;
-
-}
+    color: #f75a12;
+    background-color:white;
+} */

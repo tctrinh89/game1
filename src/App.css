@@ -7,8 +7,9 @@
 
   width: 340px;
   height:95vh;
-  margin: auto;
-  margin-top:10px;
+  /* height:620px; */
+  margin:auto;
+  margin-top:5px;
   /* padding: 30px 0; */
   /* position: absolute; */
   position: relative;
@@ -74,4 +75,5 @@ button{
   border-radius: 25px;
   text-align: center;
   margin: 20px auto;
+  cursor: pointer;
 }
