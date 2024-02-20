@@ -11,14 +11,14 @@ import TracNghiem from "./TracNghiem";
 function Game ({user}){
     
     const [timeInput,setTimeInput]= useState('')
-    const [time,setTime]=useState('')
+    const [time,setTime]=useState(0)
     // const [numberInput,setNumberInput]=useState('')
     const [numberMin1,setNumberMin1]=useState('')
     const [numberMax1,setNumberMax1]=useState('')
     const [numberMin2,setNumberMin2]=useState('')
     const [numberMax2,setNumberMax2]=useState('')
 
-    const [phepToans,setPhepToans]=useState([])
+    const [phepToans,setPhepToans]=useState(['+'])
     const [showGame,setShowGame]=useState(false)
     const audio=useRef()
     const [showCho,setShowCho]=useState(false)
@@ -48,7 +48,7 @@ function Game ({user}){
         }
     }
     const handleBegin=()=>{
-        setTime(+timeInput)
+        setTime(timeInput||60)
         setShowGame(!showGame)
         setScore(0)
         // setShowKetthuc(!showKetthuc)
@@ -63,7 +63,7 @@ function Game ({user}){
                 setScore(score+1)
                 setAnswer('')
                 setQuestion('')
-                setTime(timeInput)
+                setTime(timeInput||60)
                 setShowCho(!showCho)
             } else {
                 clearInterval(downTime.current)
@@ -78,7 +78,7 @@ function Game ({user}){
         setShowGame(false)
         setShowKetthuc(false)
         setShowCho(false)
-        setPhepToans([])
+        setPhepToans(['+'])
         setQuestion('')
         setTimeInput('')
         // setNumberInput('')
@@ -96,7 +96,7 @@ function Game ({user}){
             setScore(score+1)
             setAnswer('')
             setQuestion('')
-            setTime(timeInput)
+            setTime(timeInput||60)
             setShowCho(!showCho)
         } else {
             clearInterval(downTime.current)
@@ -121,13 +121,41 @@ function Game ({user}){
     const [mangs,setMangs]=useState([])
     const ketqua=useRef()
     useEffect(()=>{
-        let so1=(Math.floor(Math.random() * (Number(numberMax1) - Number(numberMin1) + 1)) + Number(numberMin1)) ||( Math.floor(Math.random() * 10))
-        let so2=(Math.floor(Math.random() * (Number(numberMax2) - Number(numberMin2) + 1)) + Number(numberMin2)) || (Math.floor(Math.random() * 5))
+        // let numberMina=numberMin1||5
+        // let numberMaxa=numberMax1||10
+        // let numberMinb=numberMin2||0
+        // let numberMaxb=numberMax2||5
+
+        let so1=(Math.floor(Math.random() * (Number(numberMax1||10) - Number(numberMin1||5) + 1)) + Number(numberMin1||5))
+        // ||( Math.floor(Math.random() * 10))
+        let so2=(Math.floor(Math.random() * (Number(numberMax2||5) - Number(numberMin2||0) + 1)) + Number(numberMin2||0))
+        // || (Math.floor(Math.random() * 5))
         // let auto=Math.floor(Math.random()*10)
-        let pheptoan=phepToans[Math.floor(Math.random()*phepToans.length)] || '+'
+        let pheptoan=phepToans[Math.floor(Math.random()*phepToans.length)]
+        // || '+'
         const so=[so1,so2]
         so.sort((a,b)=>b-a)
-        setQuestion(`${so[0]} ${pheptoan} ${so[1]}`)
+        if(pheptoan === `/`){
+            console.log(pheptoan)
+            if(so[0] % so[1]!==0){
+                console.log('chao')
+                let mang=[] 
+
+                for (var i=numberMin2; i<=so[0]; i++){
+                    if (so[0] % i=== 0){
+                        mang=[...mang,i];
+                    }
+                }
+            console.log(mang)
+
+            so[1]=mang[Math.floor(Math.random()*mang.length)]
+            }
+            console.log(so[1])
+            setQuestion(`${so[0]} ${pheptoan} ${so[1]}`)
+            } else{
+            setQuestion(`${so[0]} ${pheptoan} ${so[1]}`)
+            }
+        
     },[score,showGame])
     useEffect(()=>{
         if(showCho){
@@ -140,7 +168,7 @@ function Game ({user}){
                 } else {
                         setShowCho(!showCho)
                         setCount(3)
-                        setTime(timeInput)
+                        setTime(timeInput||60)
                 }
             },1000)
         }
@@ -194,6 +222,7 @@ function Game ({user}){
                 handleNumberMax2={handleNumberMax2}
                 handleCheck={handleCheck}
                 handleRadio={handleRadio} radio={radio}
+                phepToans={phepToans}
             />)
             }
         </div>

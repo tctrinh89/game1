@@ -28,7 +28,7 @@ function App() {
         <Game user={user}/> :
         <div className='User'>
           <span>User: </span>
-          <input value={user} onChange={(e)=>setUser(e.target.value)}/>
+          <input value={user} autoFocus onChange={(e)=>setUser(e.target.value)}/>
           <button onClick={handleClick}
         >
           Bắt Đầu
