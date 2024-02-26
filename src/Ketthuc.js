@@ -1,23 +1,18 @@
- 
- function Ketthuc({score,lists,handleReset}){
-
-    return(
-        <div className="Ketthuc" style={{marginTop:120}}>
-            <p> bạn trả lời đúng : {score}</p> 
-            <button 
-            onClick={handleReset}
-            >Reset</button>
-            <ul >
-                <div style={{textAlign:'left'}}>
-                {lists.map( (list,index) => (
-                    <li key={index} style={{overflow:'auto',
-                    scrollbarWidth:'none'}}>
-                        {list[0]}: {list[1]}
-                    </li>
-                ))}
-                </div>
-            </ul>
+function Ketthuc({ score, lists, handleReset }) {
+  return (
+    <div className="Ketthuc" style={{ marginTop: 120 }}>
+      <p> bạn trả lời đúng : {score}</p>
+      <button onClick={handleReset}>Reset</button>
+      <ul style={{ overflow: "hidden", width: "90%", height: "280px" }}>
+        <div style={{ textAlign: "left" }}>
+          {lists.map((list, index) => (
+            <li key={index}>
+              {list[0]}: {list[1]}
+            </li>
+          ))}
         </div>
-    )
- }
- export default Ketthuc
+      </ul>
+    </div>
+  );
+}
+export default Ketthuc;
