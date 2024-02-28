@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./TracNghiem.css";
-function TracNghiem({ ketqua, question, handleTracNghiem }) {
+function TracNghiem({ question, handleTracNghiem }) {
   // let ketquas=parseInt(eval(question))
   const [mangs, setMangs] = useState([]);
   useEffect(() => {
