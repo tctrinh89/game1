@@ -1,6 +1,7 @@
 import { ref, get, set, child } from "firebase/database";
 import { database } from "./firebase";
 import { useState, useRef, useEffect } from "react";
+
 import Begin from "./Begin";
 import Question from "./Question";
 import Answer from "./Answer";
@@ -8,7 +9,9 @@ import Cho from "./Cho";
 import Ketthuc from "./Ketthuc";
 import "./Game.css";
 import TracNghiem from "./TracNghiem";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 function Game({ user }) {
+  // console.log({ icon });
   const [timeInput, setTimeInput] = useState("");
   const [time, setTime] = useState(0);
   // const [numberInput,setNumberInput]=useState('')
@@ -194,12 +197,46 @@ function Game({ user }) {
       setLists(list);
     });
   }, [score]);
+  const handleClick = () => {
+    if (timeInput <= 0) {
+      setTime(60);
+    } else if (timeInput > 300) {
+      setTime(300);
+    } else {
+      setTime(timeInput || 60);
+    }
+    setShowGame(!showGame);
+    setScore(0);
+
+    setShowGame(false);
+    setShowKetthuc(false);
+    setShowCho(false);
+    // setPhepToans(["+"]);
+    // setQuestion("");
+    // setTimeInput("");
+
+    // setNumberMin1("");
+    // setNumberMax1("");
+    // setNumberMin2("");
+    // setNumberMax2("");
+    // setAnswer("");
+  };
   return (
     <div className="Game">
+      <div className="Back">
+        {/* <button onClick={handleClick}>
+          <ArrowLeftOutlined />
+        </button> */}
+      </div>
       {showGame ? (
         <>
           {showKetthuc ? (
-            <Ketthuc score={score} lists={lists} handleReset={handleReset} />
+            <Ketthuc
+              score={score}
+              lists={lists}
+              handleReset={handleReset}
+              handleClick={handleClick}
+            />
           ) : (
             <div className="Calculator">
               {showCho ? (
