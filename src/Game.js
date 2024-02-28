@@ -41,6 +41,8 @@ function Game({ user }) {
 
   const handleRadio = (e) => {
     setRadio(e.target.value);
+    console.log(e.target.value);
+    console.log(radio);
   };
   const handleCheck = (e) => {
     if (phepToans.includes(e)) {
@@ -61,7 +63,7 @@ function Game({ user }) {
     setShowGame(!showGame);
     setScore(0);
     // setShowKetthuc(!showKetthuc)
-    // setAnswer('?')
+    // setAnswer("?");
   };
   const handleButton = (e) => {
     if (e.target.value === "X") {
@@ -197,7 +199,7 @@ function Game({ user }) {
       setLists(list);
     });
   }, [score]);
-  const handleClick = () => {
+  const handleBack = () => {
     if (timeInput <= 0) {
       setTime(60);
     } else if (timeInput > 300) {
@@ -205,28 +207,26 @@ function Game({ user }) {
     } else {
       setTime(timeInput || 60);
     }
-    setShowGame(!showGame);
-    setScore(0);
-
     setShowGame(false);
     setShowKetthuc(false);
     setShowCho(false);
-    // setPhepToans(["+"]);
-    // setQuestion("");
-    // setTimeInput("");
+    setPhepToans(["+"]);
+    setQuestion("");
 
+    // setTimeInput("");
     // setNumberMin1("");
     // setNumberMax1("");
     // setNumberMin2("");
     // setNumberMax2("");
     // setAnswer("");
   };
+
   return (
     <div className="Game">
       <div className="Back">
-        {/* <button onClick={handleClick}>
+        <button onClick={handleBack}>
           <ArrowLeftOutlined />
-        </button> */}
+        </button>
       </div>
       {showGame ? (
         <>
@@ -235,7 +235,7 @@ function Game({ user }) {
               score={score}
               lists={lists}
               handleReset={handleReset}
-              handleClick={handleClick}
+              handleBack={handleBack}
             />
           ) : (
             <div className="Calculator">
