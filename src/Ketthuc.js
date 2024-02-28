@@ -1,10 +1,10 @@
-import { ArrowLeftOutlined } from "@ant-design/icons";
+// import { ArrowLeftOutlined } from "@ant-design/icons";
 
-function Ketthuc({ score, lists, handleReset, handleClick }) {
+function Ketthuc({ score, lists, handleReset, handleBack }) {
   return (
     <div className="Ketthuc" style={{ marginTop: 120 }}>
       <p> bạn trả lời đúng : {score}</p>
-      <button onClick={handleClick}>Back</button>
+      <button onClick={handleBack}>Back</button>
       <button onClick={handleReset}>Reset</button>
 
       <ul style={{ overflow: "hidden", width: "90%", height: "280px" }}>
